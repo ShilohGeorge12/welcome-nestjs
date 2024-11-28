@@ -1,5 +1,3 @@
-import { NewSong, Song } from 'src/interface';
-
 import {
   Body,
   Controller,
@@ -17,17 +15,17 @@ export class SongsController {
   constructor(private songsService: SongsService) {}
 
   @Get()
-  getSongs(): Song[] {
+  getSongs() {
     return this.songsService.getAllSongs();
   }
 
   @Get('/:id')
-  getSong(@Param('id', ParseIntPipe) id: number): Song {
+  getSong(@Param('id') id: string) {
     return this.songsService.getOneSong(id);
   }
 
   @Post()
-  createSong(@Body() newSong: NewSongDto): Song {
+  createSong(@Body() newSong: NewSongDto) {
     return this.songsService.createSong(newSong);
   }
 }
